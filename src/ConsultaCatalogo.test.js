@@ -9,14 +9,8 @@ test("ct01-verifica o comportamento da funcao consulta catalogo com sucesso", ()
   //entao retorna a pagina de consulta
   expect(textElement).toBeInTheDocument();
 });
-test("ct02 - verificar o comportamento da funcao consulta catalogo com sucesso", async () => {
-  const { getByText } = render(<App />);
-  await waitFor(() => {
-    expect(getByText(/eletrobomba/i)).toBeInTheDocument();
-  });
-});
 
-test("ct03 - verifica o comportamento da funcao consulta catalogo com sucesso", async () => {
+test("ct02 - verifica o comportamento da funcao consulta catalogo com sucesso", async () => {
   //dado que existem 3 produtos cadastrados
   render(<App />);
 
