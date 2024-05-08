@@ -1,10 +1,24 @@
 import ConsultaCatalogo from "./componentes/ConsultaCatalogo";
-import "./App.css";
-/* renderiza o componente consulta catalogo*/
+import Header from "./componentes/Header";
+import Footer from "./componentes/Footer";
+import CadastrarProduto from "./componentes/CadastrarProduto";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <ConsultaCatalogo />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          {/*//http://localhost:3000 */}
+          <Route path="/" element={<ConsultaCatalogo />}></Route>
+          {/*//http://localhost:3000/produtos*/}
+          <Route path="/produtos" element={<ConsultaCatalogo />}></Route>
+          {/*//http://localhost:3000/cad-produto*/}
+          <Route path="/cad-produto" element={<CadastrarProduto />}></Route>
+        </Routes>
+
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

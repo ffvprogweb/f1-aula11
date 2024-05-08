@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { listaDeProdutos } from "../ProdutoServico";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 function ConsultaCatalogo() {
   const [produtos, setProdutos] = useState([]);
+  const navigator = useNavigate();
   useEffect(() => {
     listaDeProdutos()
       .then((response) => {
@@ -13,10 +15,15 @@ function ConsultaCatalogo() {
         console.error(error);
       });
   }, []);
-
+  function cadastrarProduto() {
+    navigator("/cad-produto");
+  }
   return (
     <div className="container">
       <h5 className="text-center">Consulta Catalogo </h5>
+      <button className="btn btn-primary mb-2" onClick={cadastrarProduto}>
+        Cadastrar Produto
+      </button>
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
