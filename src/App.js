@@ -15,7 +15,14 @@ function App() {
           {/*//http://localhost:3000/produtos*/}
           <Route path="/produtos" element={<ConsultaCatalogo />}></Route>
           {/*//http://localhost:3000/cad-produto*/}
-          <Route path="/cad-produto" element={<CadastrarProduto />}></Route>
+          <Route
+            path="/cad-produto"
+            element={<CadastrarProduto />}
+          ></Route> {/* http://localhost:3000/edit-produto*/}{" "}
+          <Route
+            path="/edit-produto/:id"
+            element={<CadastrarProduto />}
+          ></Route>
         </Routes>
 
         <Footer />

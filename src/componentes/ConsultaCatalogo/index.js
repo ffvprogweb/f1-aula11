@@ -18,6 +18,10 @@ function ConsultaCatalogo() {
   function cadastrarProduto() {
     navigator("/cad-produto");
   }
+  function atualizaProduto(id) {
+    navigator(`/edit-produto/${id}`);
+  }
+
   return (
     <div className="container">
       <h5 className="text-center">Consulta Catalogo </h5>
@@ -32,6 +36,7 @@ function ConsultaCatalogo() {
             <th>Categoria</th>
             <th>Custo</th>
             <th>Quant</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody className="Catalogo">
@@ -42,6 +47,14 @@ function ConsultaCatalogo() {
               <td>{produto.categoria}</td>
               <td>{produto.custo}</td>
               <td>{produto.quantidadeNoEstoque}</td>
+              <td>
+                <button
+                  className="btn btn-info "
+                  onClick={() => atualizaProduto(produto.id)}
+                >
+                  Atualiza
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
