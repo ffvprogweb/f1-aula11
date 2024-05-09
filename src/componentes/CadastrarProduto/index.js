@@ -70,7 +70,7 @@ function CadastrarProduto() {
         .then((response) => {
           console.log(response.data);
           setMensagem(response.data); // Atualiza o estado com a mensagem da resposta HTTP
-          // Você pode fazer o que quiser com a mensagem aqui, como mostrá-la em um modal ou em algum elemento na tela
+
           navigator("/produtos");
         })
         .catch((error) => {
@@ -89,7 +89,7 @@ function CadastrarProduto() {
 
           <div className="card-body">
             {/* Exibição da mensagem */}
-            {mensagem && <div className="alert alert-info">{mensagem}</div>}
+            {mensagem && <div className="alert alert-danger">{mensagem}</div>}
             <form>
               <div className="form-group mb-2">
                 <label className="form-label"> Descrição:</label>
@@ -106,6 +106,7 @@ function CadastrarProduto() {
                 <label className="form-label"> Categoria:</label>
                 <input
                   type="text"
+                  id="categoria"
                   placeholder="Entre com a categoria a qual o produto pertence"
                   name="categoria"
                   value={categoria}
