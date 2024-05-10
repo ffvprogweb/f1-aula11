@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { listaDeProdutos } from "../ProdutoServico";
+import { listaDeProdutos, deleteProduto } from "../ProdutoServico";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 function ConsultaCatalogo() {
   const [produtos, setProdutos] = useState([]);
   const navigator = useNavigate();
+  const [mensagem, setMensagem] = useState("");
   useEffect(() => {
     listaDeProdutos()
       .then((response) => {
@@ -21,7 +22,27 @@ function ConsultaCatalogo() {
   function atualizaProduto(id) {
     navigator(`/edit-produto/${id}`);
   }
-
+  function exclusaoProduto(id) {
+    console.log("consulta cat - fc exclusao prod - id=", id);
+    deleteProduto(id)
+      .then((response) => {
+        getAllProdutos();
+      })
+      .catch((error) => {
+        console.error(error);
+        setMensagem("Ocorreu um erro na exclusão de produto.");
+      });
+  }
+  function getAllProdutos() {
+    listaDeProdutos()
+      .then((response) => {
+        setProdutos(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        setMensagem("Ocorreu um erro na consulta de informações de produto.");
+      });
+  }
   return (
     <div className="container">
       <h5 className="text-center">Consulta Catalogo </h5>
@@ -40,6 +61,7 @@ function ConsultaCatalogo() {
           </tr>
         </thead>
         <tbody className="Catalogo">
+          {mensagem && <div className="alert alert-success">{mensagem}</div>}{" "}
           {produtos.map((produto) => (
             <tr key={produto.id}>
               <td>{produto.id}</td>
@@ -53,6 +75,13 @@ function ConsultaCatalogo() {
                   onClick={() => atualizaProduto(produto.id)}
                 >
                   Atualiza
+                </button>
+                <button
+                  className="btn btn-danger "
+                  onClick={() => exclusaoProduto(produto.id)}
+                  style={{ marginLeft: "10px" }}
+                >
+                  Exclui
                 </button>
               </td>
             </tr>
