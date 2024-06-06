@@ -19,7 +19,7 @@ test("ct02 - verifica o comportamento da funcao consulta catalogo com sucesso", 
     const tabelaProdutos = screen.getByRole("table");
     const linhasProdutos = tabelaProdutos.querySelectorAll("tbody > tr");
 
-    // então a quantidade de linhas e três
+    // então a quantidade de linhas eh maior ou igual a 0
     expect(linhasProdutos.length).toBeGreaterThanOrEqual(0);
   });
 });
